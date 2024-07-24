@@ -1,0 +1,8 @@
+virtctl image-upload -n openshift-virtualization-os-images pvc rhel7-3-image --size=1Gi --image-path=./rhel-7.3-x86_64-kvm.qcow2 --insecure
+
+virtctl image-upload -n openshift-virtualization-os-images pvc rhel9-2-image --size=1Gi --image-path=./rhel-9.2-x86_64-kvm.qcow2 --insecure
+
+virtctl image-upload -n openshift-virtualization-os-images pvc win2019-image --size=6Gi --image-path=./Windows2019.iso --insecure
+
+oc process -n test-ov -f /root/test/yaml/win.yaml | oc apply -f - -n test-ov:1
+
