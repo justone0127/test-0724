@@ -6,7 +6,7 @@ virtctl image-upload -n openshift-virtualization-os-images pvc win2019-image --s
 
 oc process -n test-ov -f /root/test/yaml/win.yaml | oc apply -f - -n test-ov
 
-htpasswd -c -B -b ./htpasswd admin redhat
+htpasswd -c -B -b ./htpasswd admin redhat1!
 
 oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd -n openshift-config
 
