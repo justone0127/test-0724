@@ -6,3 +6,24 @@ virtctl image-upload -n openshift-virtualization-os-images pvc win2019-image --s
 
 oc process -n test-ov -f /root/test/yaml/win.yaml | oc apply -f - -n test-ov
 
+htpasswd -c -B -b ./htpasswd admin redhat
+
+oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd -n openshift-config
+
+    ```bash
+    cat <<EOF >passwd.yaml
+    apiVersion: config.openshift.io/v1
+    kind: OAuth
+    metadata:
+      name: cluster
+    spec:
+      identityProviders:
+      - name: ocp4-htpasswd
+        mappingMethod: claim 
+        type: HTPasswd
+        htpasswd:
+          fileData:
+            name: htpass-secret
+    EOF
+
+oc apply -f passwd.yaml
