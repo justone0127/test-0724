@@ -1,4 +1,4 @@
-virtctl image-upload -n openshift-virtualization-os-images pvc rhel7-3-image --size=30Gi --image-path=./rhel-7.3-x86_64-kvm.qcow2 --insecure
+virtctl image-upload -n openshift-virtualization-os-images pvc rhel7-3-image --size=30Gi --image-path=./rhel-guest-image-7.3-35.x86_64.qcow2 --insecure
 
 virtctl image-upload -n openshift-virtualization-os-images pvc rhel9-2-image --size=30Gi --image-path=./rhel-9.2-x86_64-kvm.qcow2 --insecure
 
