@@ -41,7 +41,7 @@ objects:
         architecture: amd64
         domain:
           cpu:
-            cores: 1
+            cores: 2
             sockets: 1
             threads: 1
           devices:
@@ -61,7 +61,7 @@ objects:
           machine:
             type: pc-q35-rhel9.2.0
           memory:
-            guest: 2Gi
+            guest: 4Gi
           resources: {}
         networks:
           - name: default
