@@ -41,3 +41,6 @@ oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd -n opensh
     EOF
 
 oc apply -f passwd.yaml
+
+admin 계정에 cluste-admin 권한 부여
+oc adm policy add-cluster-role-to-user cluster-admin admin
