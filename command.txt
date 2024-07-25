@@ -6,6 +6,20 @@ virtctl image-upload -n openshift-virtualization-os-images pvc win2019-image --s
 
 oc process -n test-ov -f /root/test/yaml/win.yaml | oc apply -f - -n test-ov
 
+타임존 확인
+timedatectl
+
+타임존 변경
+timedatectl list-timezones
+
+sudo timedatectl set-timezone Asia/Seoul
+
+시간 수동 변경
+date -s "2024-07-26 10:30:35"
+
+변경 여부 확인
+date
+
 htpasswd -c -B -b ./htpasswd admin redhat1!
 
 oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd -n openshift-config
