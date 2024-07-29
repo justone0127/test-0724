@@ -32,3 +32,50 @@ oc apply -f passwd.yaml
 
 admin 계정에 cluste-admin 권한 부여
 oc adm policy add-cluster-role-to-user cluster-admin admin
+
+
+
+
+
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: ovs-br1-multiple-networks
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ''
+  desiredState:
+    interfaces:
+    - name: ovs-br1
+      description: |-
+        A dedicated OVS bridge with eth1 as a port
+        allowing all VLANs and untagged traffic
+      type: ovs-bridge
+      state: up
+      bridge:
+        options:
+          stp: true
+        port:
+        - name: eth1 <<<<<<<< 실제 추가된 물리 Interface 명
+    ovn:
+      bridge-mappings:
+      - localnet: localnet2
+        bridge: ovs-br1
+        state: present
+
+
+
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: localnet2
+  namespace: namespace <<<NAMESPACE
+spec:
+  config: |2
+    {
+            "cniVersion": "0.3.1",
+            "name": "localnet2",
+            "type": "ovn-k8s-cni-overlay",
+            "topology":"localnet",
+            "netAttachDefName": "namespace/localnet2" <<<<<< NAMESPACE/localnet2 로 설정값 넣으셔야 해요.
+    }
