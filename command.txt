@@ -77,5 +77,9 @@ spec:
             "name": "localnet2",
             "type": "ovn-k8s-cni-overlay",
             "topology":"localnet",
-            "netAttachDefName": "namespace/localnet2" <<<<<< NAMESPACE/localnet2 로 설정값 넣으셔야 해요.
+            "netAttachDefName": "namespace/localnet2" 
     }
+
+
+
+python3 -m http.server 8080
