@@ -1,0 +1,88 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations:
+    description: mig-br1-ens224-policy-infra1
+  name: mig-br1-ens224-policy-infra1
+spec:
+  desiredState:
+    interfaces:
+      - bridge:
+          port:
+            - name: ens224
+        ipv4:
+          address:
+            - ip: 192.168.99.67
+              prefix-length: 24
+          enabled: true
+        name: mig-br1
+        state: up
+        type: linux-bridge
+  nodeSelector:
+    infra-name: infra1
+
+
+----
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations:
+    description: mig-br1-ens224-policy-infra2
+  name: mig-br1-ens224-policy-infra2
+spec:
+  desiredState:
+    interfaces:
+      - bridge:
+          port:
+            - name: ens224
+        ipv4:
+          address:
+            - ip: 192.168.99.68
+              prefix-length: 24
+          enabled: true
+        name: mig-br1
+        state: up
+        type: linux-bridge
+  nodeSelector:
+    infra-name: infra2
+
+----
+
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  annotations:
+    description: mig-br1-ens224-policy-infra3
+  name: mig-br1-ens224-policy-infra3
+spec:
+  desiredState:
+    interfaces:
+      - bridge:
+          port:
+            - name: ens224
+        ipv4:
+          address:
+            - ip: 192.168.99.69
+              prefix-length: 24
+          enabled: true
+        name: mig-br1
+        state: up
+        type: linux-bridge
+  nodeSelector:
+    infra-name: infra3
+
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  annotations: vm mig for bridge
+  name: mig-br1
+  namespace: default
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "cnv-bridge", 
+    "type": "bridge", 
+    "bridge": "mig-br1",
+    "preserveDefaultVlan": false
+  }'
