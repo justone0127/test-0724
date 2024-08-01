@@ -1,4 +1,4 @@
-## OADP를 이용한 VM 백업 복구
+![image](https://github.com/user-attachments/assets/854d0ae7-45df-4476-bf26-bde8856650f7)## OADP를 이용한 VM 백업 복구
 
 ### 1. Object Bucket 생성
 
@@ -101,7 +101,7 @@
 
 - 리소스가 반영되면 다음과 같이 상태가 변합니다.
 
-  ![odap-deployment](../images./odap-deployment.png)
+  ![odap-deployment](../images./odap-deployment-1.png)
 
 ### 3. 백업 생성
 
