@@ -2,11 +2,11 @@
 
 ### 1. Object Bucket 생성
 
-![oadp-bucket](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-bucket.png)
+![oadp-bucket](./images/oadp-bucket.png)
 
 ### 2. Bucket 정보 수집
 
-![oadp-bucket-info](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-bucket-info.png)
+![oadp-bucket-info](./images/oadp-bucket-info.png)
 
 - 다음 정보 확인
 
@@ -58,7 +58,7 @@
     aws_secret_access_key=sl/ngcTNVyTPTMci1P0VqS1gZ11X+sAD+XFnNs3d
     ```
 
-    ![odap-secret](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\odap-secret.png)
+    ![odap-secret](C./images/odap-secret.png)
 
 - DataProtectionApplication 사용자 정의 리소스 생성
 
@@ -100,7 +100,7 @@
 
 - 리소스가 반영되면 다음과 같이 상태가 변합니다.
 
-  ![odap-deployment](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\odap-deployment.png)
+  ![odap-deployment](./images./odap-deployment.png)
 
 ### 3. 백업 생성
 
@@ -108,15 +108,15 @@
 
 1. 오퍼레이터 이름을 클릭하여 한 화면으로 돌아가 기본 오퍼레이터 페이지로 이동합니다
 
-   ![oadp-operator](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-operator.png)
+   ![oadp-operator](./images/oadp-operator.png)
 
 2. **Backup** 탭으로 이동하여 **Backup 만들기**를 누릅니다.
 
-   ![oadp-backup](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-backup.png)
+   ![oadp-backup](./mages/oadp-backup.png)
 
 3. **Backup 만들기** 폼을 확인하고 *YAML 보기*로 전환 합니다.
 
-   ![backup-yaml](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\backup-yaml.png)
+   ![backup-yaml](./images/backup-yaml.png)
 
    콘텐츠를 다음 항목으로 바꿉니다.
 
@@ -144,11 +144,11 @@
    이 YAML의 콘텐츠는 `adp-vm` 네임스페이스에 `app: rhel9-vm` 레이블이 있는 모든 객체가 `DataProtectionApplication` 구성에 지정된 위치에 백업된다는 것을 나타냅니다.
    **만들기**를 누릅니다.
 
-   ![oadp-backup-yaml](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-backup-yaml.png)
+   ![oadp-backup-yaml](./images/oadp-backup-yaml.png)
 
 4. 상태 탭을 확인하여 진행 사항을 확인합니다.
 
-   ![backup-status](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\backup-status.png)
+   ![backup-status](./images/backup-status.png)
 
    > 상태가 Completed가 되면 백업이 완료된 것 입니다.
 
@@ -156,15 +156,15 @@
 
 1. Virtualization > VirtualMachines로 이동하여 `rhel9-vm`을 삭제합니다.
 
-   ![vm-delete](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\vm-delete.png)
+   ![vm-delete](./images/vm-delete.png)
 
 2. Oprators > 설치된 Operator로 돌아가서 OADP Operator를 선택합니다.
 
-   ![odap-operators](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\odap-operators.png)
+   ![odap-operators](./images/odap-operators.png)
 
 3. Restore 탭으로 전환하고 Restore 만들기를 누릅니다.
 
-   ![oadp-restore](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-restore.png)
+   ![oadp-restore](./images/oadp-restore.png)
 
 4. YAML 보기로 전환하고 콘텐츠를 다음 항목으로 바꿉니다.
 
@@ -186,7 +186,7 @@
      restorePVs: true
    ```
 
-   ![oadp-restore-yaml](C:\Works\01_자료\01_OCP\2024_롯데이노베이트_OV_PoC\images\oadp-restore-yaml.png)
+   ![oadp-restore-yaml](./images/oadp-restore-yaml.png)
 
    만들기를 누릅니다.
 
