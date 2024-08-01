@@ -101,7 +101,7 @@
 
 - 리소스가 반영되면 다음과 같이 상태가 변합니다.
 
-  ![odap-deployment-1](../images./odap-deployment-1.png)
+  ![odap-deployment-1](https://github.com/justone0127/test-0724/blob/main/images/oadp-deployment-1.png?raw=true)
 
 ### 3. 백업 생성
 
