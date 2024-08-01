@@ -2,11 +2,11 @@
 
 ### 1. Object Bucket 생성
 
-![oadp-bucket](./images/oadp-bucket.png)
+![oadp-bucket](../images/oadp-bucket.png)
 
 ### 2. Bucket 정보 수집
 
-![oadp-bucket-info](./images/oadp-bucket-info.png)
+![oadp-bucket-info](../images/oadp-bucket-info.png)
 
 - 다음 정보 확인
 
