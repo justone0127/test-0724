@@ -100,7 +100,7 @@
 
 - 리소스가 반영되면 다음과 같이 상태가 변합니다.
 
-  ![odap-deployment](./images./odap-deployment.png)
+  ![odap-deployment](../images./odap-deployment.png)
 
 ### 3. 백업 생성
 
