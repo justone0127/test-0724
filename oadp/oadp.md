@@ -57,7 +57,7 @@
     aws_access_key_id=I8MU2nXa4Sx4ym8msRfq
     aws_secret_access_key=sl/ngcTNVyTPTMci1P0VqS1gZ11X+sAD+XFnNs3d
     ```
-
+    
     ![odap-secret](Chttps://github.com/justone0127/test-0724/blob/main/images/odap-secret.png?raw=true)
 
 - DataProtectionApplication 사용자 정의 리소스 생성
