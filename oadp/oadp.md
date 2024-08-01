@@ -63,39 +63,39 @@
 - DataProtectionApplication 사용자 정의 리소스 생성
 
   ```yaml
-  kind: DataProtectionApplication
-  apiVersion: oadp.openshift.io/v1alpha1
-  metadata:
-    name: velero-sample
-    namespace: openshift-adp
-  spec:
-    backupLocations:
-      - velero:
-          config:
-            profile: default
-            region: localstorage
-            s3ForcePathStyle: 'true'
-            s3Url: 'http://10.1.137.210:8080/'
-          credential:
-            key: cloud
-            name: cloud-credentials
-          default: true
-          objectStorage:
-            bucket: oadp-bucket-3e05a7bc-43fc-4ba1-a461-9be5d9f85158
-            prefix: velero
-          provider: aws
-    configuration:
-      nodeAgent:
-        enable: true
-        uploaderType: restic
-      velero:
-        defaultPlugins:
-          - openshift
-          - aws
-          - csi
-          - kubevirt
-        featureFlags:
-          - EnableCSI
+apiVersion: oadp.openshift.io/v1alpha1
+kind: DataProtectionApplication
+metadata:
+  name: velero-sample
+  namespace: openshift-adp
+spec:
+  configuration:
+    velero:
+      defaultPlugins:
+        - kubevirt 
+        - aws 
+        - csi 
+        - openshift
+      featureFlags:
+        - EnableCSI 
+      resourceTimeout: 10m 
+    restic:
+      enable: true 
+  backupLocations:
+    - velero:
+        config:
+          profile: default
+          region: localstorage
+          s3ForcePathStyle: 'true'
+          s3Url: 'http://s3.openshift-storage.svc'
+        provider: aws 
+        default: true
+        credential:
+          key: cloud
+          name: cloud-credentials
+        objectStorage:
+          bucket: oadp-bucket-3e05a7bc-43fc-4ba1-a461-9be5d9f85158 
+          prefix: velero   
   ```
 
 - 리소스가 반영되면 다음과 같이 상태가 변합니다.
