@@ -1,0 +1,103 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: rhel8-template-poc2
+  labels:
+    os.template.kubevirt.io/fedora: 'true'
+    template.kubevirt.io/type: vm
+    workload.template.kubevirt.io/server: 'true'
+  annotations:
+    description: VM template poc
+    iconClass: icon-rhel
+    name.os.template.kubevirt.io/rhel8.0: Red Hat Enterprise Linux 8.0 or higher
+    openshift.io/display-name: Red Hat Enterprise Linux 8.0+ PoC VM
+objects:
+  - apiVersion: kubevirt.io/v1
+    kind: VirtualMachine
+    metadata:
+      labels:
+        app: '${NAME}'
+        vm.kubevirt.io/template: rhel8-server-poc2
+        vm.kubevirt.io/template.namespace: openshift
+        vm.kubevirt.io/template.revision: '1'
+      name: '${NAME}'
+    spec:
+      dataVolumeTemplates:
+        - apiVersion: cdi.kubevirt.io/v1beta1
+          kind: DataVolume
+          metadata:
+            name: '${NAME}'
+          spec:
+            source:
+              http:
+                url: 'http://bastion.ocp4.lgcns.com:8080/iso/rhel-8.9-x86_64-kvm.qcow2'
+            storage:
+              resources:
+                requests:
+                  storage: 30Gi
+      running: true
+      template:
+        metadata:
+          annotations:
+            vm.kubevirt.io/flavor: small
+            vm.kubevirt.io/os: rhel8
+            vm.kubevirt.io/workload: server
+          labels:
+            kubevirt.io/domain: '${NAME}'
+            kubevirt.io/size: small
+        spec:
+          domain:
+            cpu:
+              cores: 2
+              sockets: 1
+              threads: 1
+            devices:
+              disks:
+                - disk:
+                    bus: virtio
+                  name: rootdisk
+                - disk:
+                    bus: virtio
+                  name: cloudinitdisk
+              interfaces:
+                - masquerade: {}
+                  model: virtio
+                  name: default
+              networkInterfaceMultiqueue: true
+              rng: {}
+            machine:
+              type: pc-q35-rhel8.6.0
+            resources:
+              requests:
+                memory: 2Gi
+          evictionStrategy: LiveMigrate
+          networks:
+            - name: default
+              pod: {}
+          nodeSelector: {}
+          terminationGracePeriodSeconds: 180
+          volumes:
+            - dataVolume:
+                name: '${NAME}'
+              name: rootdisk
+            - cloudInitNoCloud:
+                userData: |
+                  #cloud-config
+                  user: cloud-user
+                  password: openshift
+                  chpasswd:
+                    expire: false
+              name: cloudinitdisk
+parameters:
+  - name: NAME
+    description: VM name
+    value: rhel8-vm
+  - name: DATA_SOURCE_NAME
+    description: Name of the DataSource to clone
+    value: rhel8
+  - name: DATA_SOURCE_NAMESPACE
+    description: Namespace of the DataSource
+    value: openshift-virtualization-os-images
+  - name: CLOUD_USER_PASSWORD
+    description: Randomized password for the cloud-init user cloud-user
+    value: openshift
